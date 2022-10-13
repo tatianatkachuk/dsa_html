@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Github repositories</title>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <!-- Bootstrap CSS -->
+        <link 
+            rel="stylesheet" 
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" 
+            integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" 
+            crossorigin="anonymous">
+
+        <!-- jQuery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+        <script 
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js" 
+            integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" 
+            crossorigin="anonymous"></script>
+
+        <!-- Ajax jQuery -->
+        <script src="jquery-1.3.2.min.js" type="text/javascript"></script>
+        <script>
+            $(document).ready(function(){
+               $("#okbtn").click(function(){
+                  $.get("https://api.github.com/users/"+ $("#username").val(),  function(data, status){
+                    $("#followers").text(data.followers)
+                    $("#repo").text(data.public_repos)
+                    $("#usr").text(data.name)
+                    $("#photo").attr('src', data.avatar_url)
+               });
+            })
+            })
+            </script>
+        
+    </head>
+
+    <body>
+        <style>
+            .div_center{
+                background: beige;
+                width: 200px;       
+                height: 200px;
+                position: absolute; 
+                left: 10%;           
+                margin-top: 200px;
+                margin-left: -100px;
+            }
+            
+            .aligned h2{
+                position: absolute;
+                left: 10%; 
+                margin-left: -100px;
+            }
+
+            .request{
+                position: absolute;
+                left: 10%; 
+                margin-left: -100px;
+                margin-top: 100px;
+            }
+        </style>
+
+
+
+        <div class="aligned">
+            <h2>Github repositories</h2>
+            
+
+        </div>
+
+        <img 
+            src="https://cdn-icons-png.flaticon.com/512/25/25231.png"
+            width="100" height="100">
+
+        <div class="request">
+            <h4>Who are you looking for? </h4>
+            <form>
+                <div>
+                    <input type="text" id="username">
+                    <button type="button" id="okbtn" class="btn btn-info">Info</button>
+                </div>
+                
+            </form>
+            
+
+            <br>
+            
+
+
+        </div>
+
+        <div class="div_center">
+            <label>Name: </label> 
+            <br>
+            <label id="usr"></label>
+            <br>
+            <label>Followers: </label>
+            <br>
+            <label id="followers"></label>
+            <br>
+            <label>Repositories: </label>
+            <br>
+            <label id="repo"></label>
+            <br>
+            <label>Photo URL: </label>
+            <br>
+            <img id="photo" src=""  />
+            
+        </div>
+
+
+
+    </body>
+
+
+</html>
